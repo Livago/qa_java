@@ -2,21 +2,25 @@ package com.example;
 
 import java.util.List;
 
+//Класс льва зависит от класса Кошачих
+//Нужно снизить зависимость класса Льва от Кошачих
+//Создаем интерфейс
+
 public class Lion {
 
     boolean hasMane;
+    private Feline feline;
 
-    public Lion(String sex) throws Exception {
+    public Lion(String sex, Feline feline) throws Exception {
+        this.feline = feline;
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
     }
-
-    Feline feline = new Feline();
 
     public int getKittens() {
         return feline.getKittens();
@@ -29,4 +33,6 @@ public class Lion {
     public List<String> getFood() throws Exception {
         return feline.getFood("Хищник");
     }
+
 }
+
