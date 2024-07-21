@@ -20,7 +20,7 @@ public class LionTest {
     }
 
     @Mock
-    Feline feline;
+    private Feline feline;
 
     private final String sex;
     private final boolean expectedHasMane;
@@ -36,8 +36,7 @@ public class LionTest {
     public static Object[][] getDoesHaveManeResult() {
         return new Object[][] {
                 {"Самец", true, ""},
-                {"Самка", false, ""},
-                {"Никто", true, "Используйте допустимые значения пола животного - самец или самка"}
+                {"Самка", false, ""}
         };
     }
 
@@ -51,14 +50,19 @@ public class LionTest {
     }
 
     @Test
-    public void doesHaveManeReturnsCorrectManeValue() {
+    public void doesHaveManeReturnsCorrectManeValue() throws Exception {
+        boolean actualResult = true;
+        Lion lion = new Lion(sex, feline);
+        actualResult = lion.doesHaveMane();
+        Assert.assertEquals("Возвращает неверное значение hasMane", expectedHasMane, actualResult);
+    }
+
+    @Test
+    public void doesHaveManeExceptionTest() {
         try {
-            Lion lion = new Lion(sex, feline);
-            boolean actualResult = lion.doesHaveMane();
-            Assert.assertEquals("Возвращает неверное значение hasMane", expectedHasMane, actualResult);
-        }
-        catch (Exception e) {
-            Assert.assertEquals(e.getMessage(), expectedExceptionMessage);
+            Lion lion = new Lion("Никто", feline);
+        } catch (Exception e) {
+            Assert.assertEquals("Используйте допустимые значения пола животного - самец или самка", e.getMessage());
         }
     }
 

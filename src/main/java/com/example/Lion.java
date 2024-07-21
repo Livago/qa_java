@@ -2,14 +2,10 @@ package com.example;
 
 import java.util.List;
 
-//Класс льва зависит от класса Кошачих
-//Нужно снизить зависимость класса Льва от Кошачих
-//Создаем интерфейс
-
 public class Lion {
 
-    boolean hasMane;
-    private Feline feline;
+    private final boolean hasMane;
+    private final Feline feline;
 
     public Lion(String sex, Feline feline) throws Exception {
         this.feline = feline;

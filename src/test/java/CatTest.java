@@ -11,7 +11,7 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
     @Mock
-    Feline feline;
+    private Feline feline;
 
     @Test
     public void getSoundReturnsMyau() {
