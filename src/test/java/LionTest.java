@@ -24,12 +24,10 @@ public class LionTest {
 
     private final String sex;
     private final boolean expectedHasMane;
-    private final String expectedExceptionMessage;
 
-    public LionTest(String sex, boolean expectedHasMane, String expectedExceptionMessage) {
+    public LionTest(String sex, boolean expectedHasMane) {
         this.sex = sex;
         this.expectedHasMane = expectedHasMane;
-        this.expectedExceptionMessage = expectedExceptionMessage;
     }
 
     @Parameterized.Parameters
@@ -51,9 +49,8 @@ public class LionTest {
 
     @Test
     public void doesHaveManeReturnsCorrectManeValue() throws Exception {
-        boolean actualResult = true;
         Lion lion = new Lion(sex, feline);
-        actualResult = lion.doesHaveMane();
+        boolean actualResult = lion.doesHaveMane();
         Assert.assertEquals("Возвращает неверное значение hasMane", expectedHasMane, actualResult);
     }
 
